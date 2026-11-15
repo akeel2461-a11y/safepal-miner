@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SafePal Miner</title>
+<style>
+body{margin:0;background:#101827;color:white;font-family:Arial;text-align:center}
+header{padding:25px;background:#17243a;font-size:25px;font-weight:bold}
+main{padding:20px}
+.card{background:#1d2d46;border-radius:18px;padding:25px;margin:20px 0}
+.amount{font-size:38px;color:#36d399;margin:15px}
+button{background:#16a879;color:white;border:0;border-radius:12px;padding:14px 25px;font-size:17px}
+.small{color:#aab9ca;font-size:14px}
+</style>
+</head>
+<body>
+<header>🛡️ SafePal Miner</header>
+<main>
+<div class="card">
+<h2>⛏️ التعدين المستمر</h2>
+<div class="amount" id="usd">$0.00</div>
+<div class="small">الأرباح بالدولار الأمريكي</div>
+<div class="amount" id="poly">0.000000 POL</div>
+<div class="small">ما يعادلها بعملة Polygon</div>
+</div>
+<div class="card">
+<h3>📊 تقرير التعدين</h3>
+<p>الربح كل ساعة</p>
+<div id="hour">$0.000001</div>
+<p>حالة التعدين</p>
+<div style="color:#36d399">● يعمل تجريبياً</div>
+</div>
+<button onclick="alert('هذا نموذج تجريبي ولا ينفذ تعديناً حقيقياً')">تقرير التعدين</button>
+<p class="small">SafePal Miner © 2026</p>
+</main>
+<script>
+let start=localStorage.getItem("minerStart");
+if(!start){
+start=Date.now();
+localStorage.setItem("minerStart",start);
+}
+function update(){
+let hours=(Date.now()-Number(start))/3600000;
+let profit=hours*0.000001;
+document.getElementById("usd").innerText="$"+profit.toFixed(8);
+document.getElementById("poly").innerText="قيمة POL غير متصلة";
+}
+update();
+setInterval(update,1000);
+</script>
+</body>
+</html>
